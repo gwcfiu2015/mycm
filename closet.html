@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>MyCM</title>
+<meta charset="utf-8">
+<link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--[if lt IE 9]>
+   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"> </script>
+   <![endif]-->
+</head>
+<body>
+<div id="wrapper">
+<header><h1><img src = "images/LogoColor.png" id="logo"</h1></header>
+<nav>
+ <ul>
+  <li><a href="homepage.html"><img class="icon" src="images/house.png" /></a></li>
+  <li><a href="closet.html"><img class="icon" src="images/shirt.png" /></a></li>
+  <li><img class="icon" src="images/community.png" /></a></li>
+  <li><a href="suggestions.html"><img class="icon" src="images/lightning.png"/></a></li>
+  <li><a href="yourfavstore.html"><img class="icon" src="images/stores.png" /></a></li>
+  <li><img class="icon" src="images/settings.png" /></a></li>
+ </ul>
+</nav>
+<div id="content">
+    <br>
+    
+    <script type="text/javascript">
+        Parse.initialize("NsfMvu7XsR4RfN07yMdXFWMYANcZ7FNM30kyrUtX", "kRGe4QbRkRRTGBclafuncfOIYPOuhP1fYx9hgPLj");
+
+
+        //creating LostPet CLASS
+        var MyCloset = Parse.Object.extend("MyCloset");
+
+
+        function addToDatabase() {
+            alert("alert");
+
+            var myCloset1 = new MyCloset();
+            
+             var fileUploadControl = $("#uploadInput")[0];
+        if (fileUploadControl.files.length > 0) {
+            alert("Creating file");
+            var file = fileUploadControl.files[0];
+            var name = "photo.jpg";
+            
+            var parseFile = new Parse.File(name, file);
+            myCloset1.set("image", parseFile); 
+
+            
+        }
+            
+//                var user1 = Parse.User.current(); 
+
+//            myCloset.set("user", user1);
+
+            myCloset1.save({
+                //setting attributes for myCloset1
+                type: document.getElementById("occasion").value,
+                color: document.getElementById("colorClothes").value,
+                //weather: document.getElementById("weatherClothes").value
+                
+            }, {
+                success: function(myCloset1) {
+                    //here is code that should take place after the object is saved
+                    alert("Saved successfully");
+                },
+                error: function(myCloset1, error) {
+                    //here is code that should take place if the save fails
+                }
+            });
+            alert("alert2");
+            event.preventDefault();
+            
+        }
+        
+        
+        
+         function showTops() {
+            var query = new Parse.Query(MyCloset);
+            
+            query.find({
+                success: function(results) {
+                    alert("Successfully retrieved" + results.length + " tops.");
+                    for (var i = 0; i < results.length; i++) {
+                        var object = results[i];
+                        //alert(object.get('type')+' - '+object.get('color'));
+                        $("#clothesList").append(object.get('type') + " " + object.get('color') + "<br />");
+                        
+                        var img = object.get('image');
+                //create an html img tag to be added to the webpage 
+                        var picture = document.createElement("IMG");
+                //alert(object.get('image').url());
+                //set the image src to be url on the database
+                picture.src = img.url();
+                //alert(picture);
+                //non jquery way to plug data in at certain id 
+                document.getElementById("clothesList").appendChild(picture);
+            }
+                        
+                        //document.getElementById("dogsList").innerHTML = object.get('type')+" "+object.get('color');
+                    
+                ,
+                error: function(error) {
+                    alert("Error: " + error.code + " " + error.message);
+                }
+            });
+        }
+
+
+//
+//
+//
+//        function showTops() {
+//            var query = new Parse.Query(MyCloset);
+//            query.equalTo("type", "tops");
+//            query.find({
+//                success: function(results) {
+//                    alert("Successfully retrieved" + results.length + " clothes.");
+//                    for (var i = 0; i < results.length; i++) {
+//                        var object = results[i];
+//                        //alert(object.get('type')+' - '+object.get('color'));
+//                        $("#dogsList").append(object.get('type') + " " + object.get('color') + "<br />");
+//                        //document.getElementById("dogsList").innerHTML = object.get('type')+" "+object.get('color');
+//                    }
+//                },
+//                error: function(error) {
+//                    alert("Error: " + error.code + " " + error.message);
+//                }
+//            });
+//        }
+//
+//
+//
+//
+//
+//        function signUpUser() {
+//            var user = new Parse.User();
+//            user.set("username", $("#username").val().toString());
+//            user.set("password", $("#password").val()).toString();
+//            user.signUp(null, {
+//                success: function(user) {
+//                    alert("You successfully signed up!");
+//                    alert($("#username").val()+$("#password").val());
+//                },
+//                error: function(user, error) {
+//                    alert("Error: " + error.code + " " + error.message);
+//                }
+//            });
+//            //event.preventDefault();
+//        }
+//
+//        function logInUser() {
+//            alert("clicked login button");
+//            var username = $("#username").val();
+//            var password = $("#password").val();
+//            Parse.User.logIn(username, password, {
+//                success: function(user) {
+//                    // Do stuff after successful login.
+//                    alert("logged in");
+//                },
+//                error: function(user, error) {
+//                    alert("log in failed");
+//                    alert(username + "password: " + password);
+//                    // The login failed. Check error to see why.
+//                }
+//
+//            }); //closes the login function
+//        }
+    </script>
+</head>
+<body>
+    <h1 id="text">Your Closet</h1>
+    <div>
+        <form onsubmit="addToDatabase()">
+            <table>
+                <tr>
+                    <td>Occasion
+                        <select>
+	<option>- Occasion -</option>
+	<option value="Unknown">Unknown</option>
+	<option value="School">School</option>
+	<option value="Gym">Gym</option>
+	<option value="Formal">Formal</option>
+	<option value="Travel">Travel</option>
+	<option value="Brunch">Brunch</option>
+	<option value="Holiday">Holiday</option>
+	<option value="Dinner">Dinner</option>
+	<option value="Night Out">Night Out</option>
+    </select>
+                    </td>
+                    <td>
+                        <input type="text" id="occasion" name="name" placeholder="'Unknown', 'Night out', 'Dinner','Travel', 'Gym', 'School', 'Formal', 'Holiday' or 'Brunch' -- no quotes" required="required" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Color
+                        <select>
+	<option>- Color -</option>
+	<option value="Unknown">Unknown</option>
+	<option value="Black">Black</option>
+	<option value="White">White</option>
+	<option value="Red">Red</option>
+	<option value="Blue">Blue</option>
+	<option value="Green">Green</option>
+	<option value="Yellow">Yellow</option>
+	<option value="Orange">Orange</option>
+	<option value="Pink">Pink</option>
+	<option value="Purle">Purle</option>
+    <option value="Brown">Brown</option>
+	<option value="Teal">Teal</option>
+	<option value="Silver">Silver</option>
+	<option value="Gold">Gold</option>
+	<option value="Bronze">Bronze</option>
+    </select>
+                    </td>
+                    <td>
+                        <input type="text" id="colorClothes" name="color" required="required">
+                    </td>
+                </tr>
+            </table>
+    
+                
+                   
+                        <input type="button" value="Submit" onclick="addToDatabase()">
+                
+            
+        </form>
+        <div>
+            <button onclick="showTops()">Show Tops</button>
+            <div id="clothesList"></div>
+        </div>
+       
+    
+<!--
+    <br><br><br><br>
+    //<input type="button"  value="enter">
+    
+    <br><br><br><br>
+    
+<label> Tops <article><input id="files" type="file" multiple/><output id="result" x_position="45" y_position="35"/>
+    </article> </label>
+ 
+    <br><br><br><br>
+     <script type="text/javascript">
+
+    
+    
+    window.onload = function(){
+        
+    
+    if(window.File && window.FileList && window.FileReader)
+    {
+        var filesInput = document.getElementById("files");
+        
+        filesInput.addEventListener("change", function(event){
+            
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            
+            for(var i = 0; i< files.length; i++)
+            {
+                var file = files[i];
+                
+                //Only pics
+                if(!file.type.match('image'))
+                  continue;
+                
+                var picReader = new FileReader();
+                
+                picReader.addEventListener("load",function(event){
+                    
+                    var picFile = event.target;
+                    
+                    var div = document.createElement("div");
+                    
+                    div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                            "title='" + picFile.name + "'/>";
+                    
+                    output.insertBefore(div,null);            
+                
+                });
+                
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }                               
+           
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+}
+    
+    
+    
+    </script>
+    
+
+<label>Bottoms <article><input id="files" type="file" multiple/><output id="result" />
+    </article> </label> 
+    <br><br><br><br>
+    
+<label >Dresses <article><input id="files" type="file" multiple/><output id="result" />
+    </article> </label>
+    <br><br><br><br>
+    
+<label >Shoes <article><input id="files" type="file" multiple/><output id="result" />
+    </article> </label>
+    <br><br><br><br>
+    
+<label >Accesories <article><input id="files" type="file" multiple/><output id="result" /></article> </label>
+    <br><br><br>
+    
+-->
+        
+          <title>My App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+</head>
+
+<body>
+  
+  <div id="main">
+    <h1 id="text2";>Upload Your Picture!</h1>
+
+
+    <div style="display:none" class="error">
+      Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
+    </div>
+
+    <div style="display:none" class="success">
+      <p>We've also just created your first object using the following code:</p>
+      
+        <code>
+          var TestObject = Parse.Object.extend("TestObject");<br/>
+          var testObject = new TestObject();<br/>
+          testObject.save({foo: "bar"});
+        </code>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="parse.js"></script>
+    <div id="objectList"></div>
+    <form>
+    
+    <input type="file" id="uploadInput" name = "uploadInput" />
+    <input type="button" id="run" name="run" value="Run Script" onclick="signUpUser()"/>
+    
+<br><br><br><br>
+    <div id="contact">
+  <span class="resort">My Closet Management</span><br>
+  7303 S.W. 88 Street Center of Mall
+  Dadeland Mall<br>
+  Miami, FL 95555<br><br>
+  <a id="mobile" href="tel:888-555-5555">888-555-5555</a><span id="desktop">888-555-5555</span><br><br>
+  </div>
+</div>
+<footer>
+Copyright &copy; 2015 My Closet Managment<br>
+<a href="mailto:yourfirstname@yourlastname.com">yourfirstname@yourlastname.com</a>
+</footer>
+</div>
+</body>
+</html>
+
+

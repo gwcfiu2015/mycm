@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>MyCM</title>
+<meta charset="utf-8">
+<link href="css/style.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!--[if lt IE 9]>
+   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"> </script>
+   <![endif]-->
+
+    
+    
+</head>
+<body>
+<div id="wrapper">
+<header><h1>MyCM</h1></header>
+<nav>
+ <ul>
+  <li><a href="homepage.html"><img class="icon" src="../house.png" /></a></li>
+  <li><a href="closet.html"><img class="icon" src="../shirt.png" /></a></li>
+  <li><a href="community.html"><img class="icon" src="../community.png" /></a></li>
+  <li><a href="suggestions.html"><img class="icon" src="../1/images/lightning.png"/></a></li>
+  <li><a href="yourfavstore.html"><img class="icon" src="../store.png" /></a></li>
+  <li><a href="settings.html"><img class="icon" src="../settings.png" /></a></li>
+ </ul>
+</nav>
+    
+<div id="content">
+<h2>My Closet Management</h2>
+<img src="images/pinkcloset.jpg" alt="Your walk in closet" height="1200px"  width="1500px">
+    
+  <label> Tops <article><input id="files" type="file" multiple/><output id="result" x_position=45 y_position=35/>
+    </article> </label>
+    
+    <div class="img-wrap">
+    <span class="close">&times;</span>
+    <img src="http://lorempixel.com/100/80">
+</div>
+    
+<label>Bottoms <article><input id="files" type="file" multiple/><output id="result" />
+    </article> </label>
+    
+<label >Dresses <article><input id="files" type="file" multiple/><output id="result" />
+    </article> </label>
+    
+<label >Shoes <article><input id="files" type="file" multiple/><output id="result" />
+    </article> </label>
+    
+<label >Accesories <article><input id="files" type="file" multiple/><output id="result" /></article> </label>
+    <br><br><br>
+    
+    <!--    uploading pic-->
+
+     <script type="text/javascript">
+
+    
+    
+    window.onload = function(){
+        
+    
+    if(window.File && window.FileList && window.FileReader)
+    {
+        var filesInput = document.getElementById("files");
+        
+        filesInput.addEventListener("change", function(event){
+            
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            
+            for(var i = 0; i< files.length; i++)
+            {
+                var file = files[i];
+                
+                //Only pics
+                if(!file.type.match('image'))
+                  continue;
+                
+                var picReader = new FileReader();
+                
+                picReader.addEventListener("load",function(event){
+                    
+                    var picFile = event.target;
+                    
+                    var div = document.createElement("div");
+                    
+                    div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" +
+                            "title='" + picFile.name + "'/>";
+                    
+                    output.insertBefore(div,null);            
+                
+                });
+                
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }                               
+           
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+}
+    
+    
+    
+    </script>
+    
+
+  
+</div>
+<footer>
+Copyright &copy; 2015 My Closet Managment<br>
+<a href="mailto:yourfirstname@yourlastname.com">yourfirstname@yourlastname.com</a>
+</footer>
+</div>
+</body>
+</html>

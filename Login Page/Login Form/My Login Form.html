@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>MyCM</title>
+<meta charset="utf-8">
+
+<link href="style.css" rel="stylesheet" style="text/css">
+
+
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="underscore.js"></script>
+   <script src="http://www.parsecdn.com/js/parse-1.5.0.min.js"></script>
+    
+<script type="text/javascript">
+    
+
+    
+    </script>
+    
+       
+    
+</head>
+<body>
+    
+
+
+</div> 
+    
+<div class="BlackLogo" background-color="blue">
+<img src = "../img/LogoBlack.png" id="BlackLogo" >
+    </div>
+<div id="login-wrapper">
+<!--
+<div style='position:absolute;z-index:0;left:0;top:0;width:100%;height:100%'>
+  <img src='../img/fashion.jpg' style='width:100%;height:100%' alt='[]' />
+</div>
+-->
+<!-- begin login form -->
+<form name="loginForm" action="#" method="post" id = "loginform">
+    <table>
+        <tr>
+            <td><label for="login">Login:</td> 
+            <td><input class="fixed-input-box" type="text" name="login" id="login" ></td>
+        </tr>
+        <tr>
+            <td><label for="password">Password:</label></td> 
+            <td><input type="password" name="password" id="password" class = "fixed-input-box"></td>
+        </tr>
+    </table>
+     <div id="loginButtons"> 
+         <table>
+             <tr>
+                 <td class="leftButton"><input type="button" name="submit" id="submit" value="Sign up" onclick="signUp()" /></td>
+
+                <td class="rightButton"><input type="reset" name="reset" id="reset" value="Log in" onclick="testDictionaries()"><br></td>
+                 
+    </table>
+    </div>
+
+
+    </form>
+    
+
+    
+<!-- end login form -->
+    
+<script type="text/javascript">
+Parse.initialize("NsfMvu7XsR4RfN07yMdXFWMYANcZ7FNM30kyrUtX", "kRGe4QbRkRRTGBclafuncfOIYPOuhP1fYx9hgPLj");
+
+//    alert("made it past parse initialize");
+    
+
+    
+//    var TestObject = Parse.Object.extend("TestObject");
+//    var testObject = new TestObject();
+//      testObject.save({foo: "bar"}, {
+//      success: function(object) {
+//        $(".success").show();
+//      },
+//      error: function(model, error) {
+//        $(".error").show();
+//      }
+//    });
+    
+    
+
+
+function signUp() {
+                
+    //creates new Parse user to be saved to database 
+    var user = new Parse.User();
+    
+    //grabs the information from our form 
+    var username = $("#login").val();
+    var password = $("#password").val();
+    
+    user.set("username", username.toString());
+    user.set("password", password.toString());
+    //can add extra information to user
+    //user.set("website", "with-animations/index.html");
+    //user.set("email", "email@example.com");
+    
+//call signup function to add user to database 
+user.signUp(null, {
+    
+  success: function(user) {
+    // Hooray! Let them use the app now.
+      
+      //window.location="https://www.google.com";
+      user.login(); //sets Parse.User.currentUser() to be the user variable 
+      
+  },
+  error: function(user, error) {
+    // Show the error message somewhere and let the user try again.
+  }
+    });//close user signup 
+
+    window.location="../../signup.html";
+} //closes submit click function 
+$("#reset").click(function (){
+    
+    var username = $("#login").val();
+    var password = $("#password").val(); 
+    Parse.User.logIn(username.toString(),  password.toString(), {
+  success: function(user) {
+    // Do stuff after successful login.
+      
+      window.location="../../homepage.html";
+  },
+  error: function(user, error) {
+    // The login failed. Check error to see why.
+  }
+
+        }); //closes the login function
+
+    }); //closes the reset click
+
+  
+
+
+  </script>
+
+</body>
+</html>

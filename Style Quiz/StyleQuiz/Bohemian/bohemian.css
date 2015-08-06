@@ -1,0 +1,21 @@
+h1 {
+    text-align: center;
+    color: black;
+    font-size: 50px;
+}
+
+body{
+
+      background: url(../Bohemian/background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+p{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 40px;
+    text-align: center;
+    color:bisque;
+}

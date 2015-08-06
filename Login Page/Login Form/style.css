@@ -1,0 +1,182 @@
+/*
+.fadein { position:relative; width:500px; height:332px; }
+.fadein img { position:absolute; left:0; top:0; }
+*/
+
+
+container {
+    display: inline;
+}
+
+
+/*
+.picturesClass {
+display: inline-block;
+}
+
+.picturesClass * {
+display: inline-block;
+    
+}
+
+#img1 {
+    margin-left: 25px;
+    margin-top: 25px;
+  float: right;
+}
+*/
+
+/*
+#img2 {
+    margin-left: 1000px;
+    margin-top: 29px;
+}
+
+#img3 {
+    margin-left: 800px;
+    margin-top: 33px;
+}
+
+#img4 {
+    margin-left: 1500px;
+    margin-top: 37px;
+}
+
+#img5 {
+    margin-left: 500px;
+    margin-top: 41px;
+}
+
+#img6 {
+    margin-left: 600px;
+    margin-top: 45px;
+}
+
+#img7 {
+    margin-left: 744px;
+    margin-top: 49px;
+}
+
+#img8 {
+    margin-left: 1300px;
+    margin-top: 25px;
+}
+
+#img9 {
+    margin-left: 1300px;
+    margin-top: 38px;
+}
+
+#img10 {
+    margin-left: 1025px;
+    margin-top: 99px;
+}
+
+#img11 {
+    margin-left: 1025px;
+    margin-top: 9px;
+}
+
+#img12 {
+    margin-left: 1025px;
+    margin-top: 59px;
+}
+*/
+
+
+#loginform {
+    width: 300px;
+    padding: 25px;
+    border: 25px solid gray;
+    margin: 25px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+}
+
+h2 {
+    text-align: center center fixed;
+    
+}
+
+
+
+body{
+
+      background: url(../img/fashion.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#BlackLogo
+{
+/*    height: 350px;*/
+/*    width: 900px; */
+    margin-left: 400px;
+    z-index: 10;
+    
+}
+
+
+/*
+#carolina {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 50px;
+    border: 2px solid black;
+    
+}
+
+#givenchy {
+    margin-top: 150px;
+    margin-bottom: 45px;
+    margin-right: 305px;
+    margin-left: 100px;
+    border: 2px solid black;
+}
+
+#louboutin {
+    margin-top: 105px;
+    margin-bottom: 105px;
+    margin-right: 275px;
+    margin-left: 150px;
+    border: 2px solid black;
+}
+
+
+#chanel {
+    margin-top: 105px;
+    margin-bottom: 123px;
+    margin-right: 145px;
+    margin-left: 150px;
+    border: 2px solid black;
+}
+
+#armani {
+    margin-top: 105px;
+    margin-bottom: 155px;
+    margin=right: 90px;
+    margin-left: 145px;
+    border: 2px solid black;
+}
+
+#dior {
+    margin-top: 205px;
+    margin-bottom: 165px;
+    margin-right: 145px;
+    margin-left: 105px;
+    border: 2px solid black;
+}
+
+#kors {
+    margin-top: 1px;
+    margin-bottom: 150px;
+    margin-right:10px;
+    margin-left: 140px;
+    border: 2px solid black;
+}
+*/

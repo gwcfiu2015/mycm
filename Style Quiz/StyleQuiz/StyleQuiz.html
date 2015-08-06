@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="css/StyleQuiz.css" rel="stylesheet" style="text/css" />
+<!-- begin quiz script -->
+<script>
+function finish() {
+	var ext = '.html';
+	var results = new Array("none","Classic/Classic","Chic/Chic","Sophisticated/Sophisticated","Bohemian/Bohemian");
+	var nums = new Array(5);
+	for(var i = 0; i < nums.length; i++) nums[i] = 0;
+	for(var i = 1; i <= 5; i++) {
+		var q = document.forms['quiz'].elements['question_'+i];
+		if(q[0].type=='checkbox') {
+			var n = 0;
+		}
+		for(var j = 0; j < q.length; j++) {
+			if(q[j].checked) {
+				var a = q[j].value.split(',');
+				for(var k = 0; k < a.length; k++) {
+					nums[a[k]]++;
+				}
+				if(q[j].type=='radio') break;
+				else n++;
+			}
+			if(j == q.length-1&&q[j].type=='radio') {nums[0]++;}
+		}
+		if(q[0].type=='checkbox'&&((document.forms['quiz'].elements['question_'+i+'_min']&&n<document.forms['quiz'].elements['question_'+i+'_min'].value)||(document.forms['quiz'].elements['question_'+i+'_max']&&n>document.forms['quiz'].elements['question_'+i+'_max'].value))) nums[0]++;
+	}
+	var j = new Array('0');
+	for (i in nums) if(nums[i]>nums[j[0]]){j=new Array(''+i);} else if(nums[i]==nums[j[0]])j[j.length] = i;
+	//var o = '';for(var i in results)o+=results[i]+'='+nums[i]+'\n';
+	//alert(o);
+	if(nums[0]!=0) {
+		alert('You missed or incorrectly answered '+nums[0]+' questions!');
+	}
+	else if(j[0]==0) {
+		alert('No result could be determined.');
+	}
+	else {
+		location = results[j[0]]+ext;
+	}
+}
+</script>
+<!-- end quiz script -->          
+</head>
+
+<body>
+    <h1>Style Quiz</h1>
+<!-- begin quiz html -->
+<form name="quiz" action="javascript:finish();">
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td width="34%">
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<strong>What is your fashion icon?</strong> 
+</font>
+</td>
+</tr>
+<tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_1" type="radio" value="1"> Calvin Klein
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_1" type="radio" value="2"> Michael Kors
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_1" type="radio" value="3"> Louis Vuitton
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_1" type="radio" value="4"> Tory Burch
+</font>
+</td>
+</tr>
+</table>
+<br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td width="34%">
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<strong>You tend to wear your hair?</strong> 
+</font>
+</td>
+</tr>
+<tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_2" type="radio" value="1"> Straight Hair
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_2" type="radio" value="2"> Messy Bun
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_2" type="radio" value="3"> Special Up-Do
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_2" type="radio" value=""> Beach Waves
+</font>
+</td>
+</tr>
+</table>
+<br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td width="34%">
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<strong>You two favorite stores are?</strong> 
+</font>
+</td>
+</tr>
+<tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_3" type="radio" value="1"> Banana Republic, Ann Taylor
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_3" type="radio" value="2"> Esprit, Marshalls
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_3" type="radio" value="3"> Macy's, Saks Fifth Avenue
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_3" type="radio" value="4"> Thrift Stores and Vintage Stores
+</font>
+</td>
+</tr>
+</table>
+<br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td width="34%">
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<strong>Your go-to accessories are?</strong> 
+</font>
+</td>
+</tr>
+<tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_4" type="radio" value="1"> Pearls
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_4" type="radio" value="2"> The latest shoes
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_4" type="radio" value="3"> Sunglasses
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_4" type="radio" value="4"> Head-Band
+</font>
+</td>
+</tr>
+</table>
+<br /><table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td width="34%">
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<strong>How would you describe yourself?</strong> 
+</font>
+</td>
+</tr>
+<tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_5" type="radio" value="1"> Confident
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_5" type="radio" value="2"> Bold
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_5" type="radio" value="3"> Classy
+</font>
+</td>
+</tr><tr>
+<td>
+<font size="2" face="Verdana, Arial, Helvetica, sans-serif">
+<input name="question_5" type="radio" value="4"> Free-spirited
+</font>
+</td>
+</tr>
+</table>
+<br /> <INPUT TYPE="submit" value="Finish">
+ <INPUT TYPE="reset" value="Reset">
+</form>
+<!-- end quiz html -->          
+    
+    
+    
+</body>
+
+</html>
